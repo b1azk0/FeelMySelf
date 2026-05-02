@@ -1,0 +1,40 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Container from '../components/primitives/Container.astro';
+import ProductGallery from '../components/product/ProductGallery.astro';
+import PriceTag from '../components/product/PriceTag.astro';
+import BuyButton from '../components/product/BuyButton.astro';
+import type { Product } from '../lib/woo';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const plainShortDesc = product.shortDescription.replace(/<[^>]+>/g, '').slice(0, 160);
+---
+<BaseLayout
+  title={`${product.name} — Feel MySelf`}
+  description={plainShortDesc || product.name}
+  canonical={product.permalink}
+  noindex
+>
+  <article class="py-8">
+    <Container>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <ProductGallery images={product.images} alt={product.name} />
+        <div>
+          <h1 class="text-3xl md:text-4xl font-bold mb-4">{product.name}</h1>
+          <div class="mb-6"><PriceTag product={product} /></div>
+          {product.shortDescription && (
+            <div class="prose mb-8" set:html={product.shortDescription} />
+          )}
+          <BuyButton product={product} size="lg" />
+          {product.description && (
+            <div class="prose mt-12 max-w-none" set:html={product.description} />
+          )}
+        </div>
+      </div>
+    </Container>
+  </article>
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/primitives/Container.astro';
+import ProductCard from '../components/product/ProductCard.astro';
+import {
+  fetchAllProducts,
+  fetchAllCategories,
+  type Product,
+  type Category,
+} from '../lib/woo';
+
+export async function getStaticPaths() {
+  const [categories, products] = await Promise.all([
+    fetchAllCategories(),
+    fetchAllProducts(),
+  ]);
+
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: {
+      category,
+      products: products.filter((p) =>
+        p.categories.some((c) => c.slug === category.slug)
+      ),
+    },
+  }));
+}
+
+interface Props {
+  category: Category;
+  products: Product[];
+}
+
+const { category, products } = Astro.props as Props;
+const plainDescription = category.description.replace(/<[^>]+>/g, '').slice(0, 160);
+---
+<BaseLayout
+  title={`${category.name} — Feel MySelf`}
+  description={plainDescription || `Produkty z kategorii ${category.name}`}
+  canonical={new URL(`/${category.slug}/`, Astro.site).toString()}
+  noindex
+>
+  <Container>
+    <header class="py-12">
+      <h1 class="text-4xl md:text-5xl font-bold">{category.name}</h1>
+      {category.description && (
+        <div class="prose mt-4 max-w-none" set:html={category.description} />
+      )}
+    </header>
+    {products.length === 0 ? (
+      <p class="py-8 text-muted">Brak produktów w tej kategorii.</p>
+    ) : (
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-16">
+        {products.map((p) => <ProductCard product={p} />)}
+      </div>
+    )}
+  </Container>
+</BaseLayout>

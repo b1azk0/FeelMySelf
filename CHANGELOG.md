@@ -4,6 +4,35 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Added — Workstream 4 (product / category integration)
+
+- `src/lib/woo.ts` — typed Woo Store API client. 8 unit tests
+  (mocked fetch) cover normalization, pagination short-circuit,
+  full-page pagination, error throwing, Polish złoty formatting.
+- `WOO_API_BASE` resolved via `import.meta.env` (Astro's canonical
+  env-var path; CF Pages Production env var set to www.feelmyself.pl).
+- Product UI: PriceTag (sale-discount strikethrough), BuyButton
+  (deep-links to live Woo permalink with target=_self;
+  "Niedostępny" ghost-disabled when out of stock), ProductCard
+  (square image with light-gray bg fill + title + price),
+  ProductGallery (main + thumbnail grid, no JS lightbox in P1).
+- ProductLayout (gallery left, title+price+description+BuyButton
+  right). Canonical points at the live Woo permalink (so staging
+  doesn't compete with prod in Google's index).
+- `/produkt/[slug]` route — 5 product pages generated from live
+  Woo Store API at build time.
+- `/[slug]` (root-level) route — 1 category page generated
+  (`/kosmetyki/` per the live URL pattern).
+
+### Phase 1 URL plan adjustment
+
+The plan assumed category URLs at `/kategoria-produktu/<slug>/`
+(default Woo). Live site has customized to `/<slug>/` (e.g.
+`/kosmetyki/`). Verified via `curl -I` — the default path 404s.
+Astro route moved from `/src/pages/kategoria-produktu/[slug].astro`
+to `/src/pages/[slug].astro`. URL preservation intent is unchanged
+(staging URLs match what Google has indexed for prod).
+
 ### Added — Workstream 3 (blog UI shell, no migration)
 
 - Blog content collection schema at `src/content.config.ts` using
