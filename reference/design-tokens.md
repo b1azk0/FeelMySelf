@@ -8,10 +8,82 @@ This file is the authoritative input for `@theme {}` block in
 
 ## Brand identity
 
-The brand is **monochromatic** — black text and accents on white, with
-mid-gray as the only accent. There is no "brand color" in the typical
-sense: the whole UI uses `#212121` (near-black) as both the text color
-and the primary action color.
+**Important reframe:** The Botiga customizer tokens describe the UI
+*chrome* (buttons, borders, text), which is monochromatic by design.
+The actual brand identity is carried by the **imagery** — saturated,
+painterly hero artwork and the logo system. The monochrome chrome is
+the *frame* that lets imagery dominate. See "Imagery & Logo System"
+below.
+
+UI chrome only: black text and accents on white, mid-gray hover state.
+No "brand color" in the chrome — `#212121` (near-black) serves as text,
+heading, button, and link color simultaneously.
+
+## Imagery & Logo System
+
+### Logo system
+
+| Asset | URL (proxied via `<Image>`) | Role | Aspect |
+|---|---|---|---|
+| Primary logo (black) | `/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png` | Header, footer, light backgrounds | ~1.07:1 (square-ish) |
+| Primary logo (white) | `/wp-content/uploads/2025/08/Feel-My-Self_white_transparent.png` | Dark backgrounds, photo overlays | same |
+| Heart sub-mark (rainbow + "FOR EVERYONE, EVERY DAY") | `/wp-content/uploads/2025/08/logo-serce_black_transparent_border.png` | Brand identity / inclusivity callout | ~1.24:1 |
+
+**Primary logo composition:** "feel" hand-scripted in cursive (with a
+heart-shaped dot/stroke ending) over stacked "MY SELF" in industrial
+sans-serif caps. Tension between handcraft (script) and clean
+modernism (caps) — friendly + polished.
+
+**Heart sub-mark composition:** Hand-drawn rainbow/Pride heart with
+thick black outline, "FOR EVERYONE, EVERY DAY" curved around the
+bottom. **Inclusivity / Pride is core brand positioning, not
+decoration.** This shows up in body messaging too.
+
+### Photography / illustration style
+
+The hero/marketing graphics are **saturated, painterly, AI-art
+aesthetic** with bold color blocking and overlapping geometric shapes.
+
+Reference: `FeelMySelf-Hero-Banner.png` (1456×816, 16:9) — magenta +
+orange + teal color blocking; overlapping sun/moon circles; coastal
+landscape with cliffs; tiny human figures for scale and emotional
+intimacy. Bold, joyful, sensual.
+
+Reference: `FeelMySelf-HomeLP-Graphic-3.png` (1456×816) — same color
+language and composition style as the hero. Sister artwork.
+
+Reference: `u1515132492_Make_only_backgrounds...` — explicit Midjourney
+output (visible in filename UUID). Used as a section background.
+
+**Style notes:**
+- 16:9 aspect ratio for full-width banners
+- Saturated palette: magenta (~#E91E80), orange (~#FF6B47), teal
+  (~#2A8FA8), white space — but these are *image* colors, not UI
+  tokens. They appear only inside imagery.
+- Painterly/AI-illustration over photography — no traditional product
+  photography for hero/lifestyle
+- Color blocking and shape overlap as composition device
+- Human figures rendered small, ambient — not portrait-focused
+
+### Product photography style
+
+Different from hero/lifestyle: product shots are clean, centered,
+square (1000×1000), white or light-gray background — standard
+e-commerce product photography. Lets the bottle/jar shape carry visual
+weight.
+
+### Implication for Phase 1 components
+
+- **Hero / banner sections:** full-bleed, 16:9, image dominates;
+  overlay text minimal; chrome (CTA buttons) sits at bottom-left or
+  bottom-right with white-on-image styling
+- **Product cards:** square aspect ratio (1:1), white/light-gray
+  background, generous padding around the product to let it breathe
+- **Logo placement (Header):** primary black logo on white nav, sized
+  generously — this IS the brand mark, not a small icon
+- **Inclusivity / heart sub-mark:** worth surfacing in the footer or
+  about section; not Phase 1 priority but should be designed for in
+  Workstream 5 homepage composition
 
 ## Colors
 
