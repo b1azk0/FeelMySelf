@@ -32,3 +32,17 @@ jobs:
         run: npm run build
         env:
           WOO_API_BASE: https://www.feelmyself.pl/wp-json/wc/store/v1
+
+      # CF Pages' GitHub App integration occasionally misses push triggers.
+      # As a belt-and-braces measure, fire the deploy hook explicitly after
+      # CI is green on main. CF rebuilds with current main + current env vars.
+      - name: Trigger Cloudflare Pages deploy
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          response=$(curl -s -X POST -w "%{http_code}" -o /dev/null "$DEPLOY_HOOK_URL")
+          echo "Deploy hook returned HTTP $response"
+          if [ "$response" != "200" ]; then
+            exit 1
+          fi
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CF_DEPLOY_HOOK_URL }}
