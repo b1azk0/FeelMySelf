@@ -1,5 +1,5 @@
 const DEFAULT_API_BASE =
-  (typeof process !== 'undefined' && process.env?.WOO_API_BASE) ||
+  import.meta.env.WOO_API_BASE ||
   'https://www.feelmyself.pl/wp-json/wc/store/v1';
 
 export interface ProductImage {

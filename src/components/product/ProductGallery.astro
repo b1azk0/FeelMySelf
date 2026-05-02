@@ -1,0 +1,38 @@
+---
+import Image from '../primitives/Image.astro';
+import type { ProductImage } from '../../lib/woo';
+
+interface Props {
+  images: ProductImage[];
+  alt: string;
+}
+
+const { images, alt } = Astro.props;
+const main = images[0];
+const thumbs = images.slice(1);
+---
+<div class="space-y-3">
+  {main && (
+    <Image
+      src={main.src}
+      alt={main.alt || alt}
+      width={800}
+      height={800}
+      loading="eager"
+      class="w-full aspect-square object-cover bg-card"
+    />
+  )}
+  {thumbs.length > 0 && (
+    <div class="grid grid-cols-4 gap-2">
+      {thumbs.map((img) => (
+        <Image
+          src={img.src}
+          alt={img.alt || alt}
+          width={150}
+          height={150}
+          class="w-full aspect-square object-cover bg-card"
+        />
+      ))}
+    </div>
+  )}
+</div>

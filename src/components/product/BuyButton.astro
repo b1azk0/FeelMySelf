@@ -1,0 +1,20 @@
+---
+import Button from '../primitives/Button.astro';
+import type { Product } from '../../lib/woo';
+
+interface Props {
+  product: Pick<Product, 'permalink' | 'inStock'>;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { product, size = 'md' } = Astro.props;
+---
+{product.inStock ? (
+  <Button href={product.permalink} size={size} variant="primary" rel="noopener" target="_self">
+    Kup teraz
+  </Button>
+) : (
+  <Button size={size} variant="ghost" type="button" class="cursor-not-allowed opacity-60">
+    Niedostępny
+  </Button>
+)}

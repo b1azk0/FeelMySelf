@@ -1,0 +1,29 @@
+---
+import Image from '../primitives/Image.astro';
+import PriceTag from './PriceTag.astro';
+import type { Product } from '../../lib/woo';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const cover = product.images[0];
+---
+<article class="group">
+  <a href={`/produkt/${product.slug}`} class="block">
+    {cover && (
+      <Image
+        src={cover.src}
+        alt={cover.alt || product.name}
+        width={400}
+        height={400}
+        class="w-full aspect-square object-cover mb-3 transition-opacity group-hover:opacity-90 bg-card"
+      />
+    )}
+    <h3 class="font-bold group-hover:text-brand-secondary transition-colors line-clamp-2">{product.name}</h3>
+    <div class="mt-2">
+      <PriceTag product={product} />
+    </div>
+  </a>
+</article>
