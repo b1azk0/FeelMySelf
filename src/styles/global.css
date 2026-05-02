@@ -4,14 +4,14 @@
    (see reference/design-tokens.md). The brand chrome is monochromatic;
    imagery carries the visual identity. */
 @theme {
-  /* Colors */
+  /* Colors — brand-primary is the only "color" the chrome uses;
+     -secondary is its hover state. The brand identity lives in
+     imagery (see reference/design-tokens.md). */
   --color-brand-primary: #212121;
   --color-brand-secondary: #757575;
-  --color-text: #212121;
-  --color-text-muted: #666666;
+  --color-muted: #666666;
   --color-card: #f5f5f5;
   --color-divider: #dddddd;
-  --color-button-fg: #ffffff;
 
   /* Typography */
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -33,7 +33,7 @@
   }
 
   body {
-    color: var(--color-text);
+    color: var(--color-brand-primary);
     background-color: white;
     font-weight: 200;
     line-height: 1.68;

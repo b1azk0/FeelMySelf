@@ -1,0 +1,58 @@
+---
+import Container from '../primitives/Container.astro';
+import Image from '../primitives/Image.astro';
+
+const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: '/', label: 'Strona główna' },
+  { href: '/sklep', label: 'Sklep' },
+  { href: '/blog', label: 'Blog' },
+];
+---
+<footer class="border-t border-divider bg-white mt-16">
+  <Container>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12">
+
+      <div class="flex items-start gap-4">
+        <Image
+          src="https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png"
+          alt="Feel MySelf"
+          width={100}
+          height={93}
+          class="h-20 w-auto"
+        />
+        <Image
+          src="https://www.feelmyself.pl/wp-content/uploads/2025/08/logo-serce_black_transparent_border.png"
+          alt="For everyone, every day"
+          width={100}
+          height={81}
+          class="h-20 w-auto"
+        />
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">Nawigacja</h2>
+        <ul class="space-y-2">
+          {navLinks.map((l) => (
+            <li>
+              <a href={l.href} class="text-sm hover:text-brand-secondary transition-colors">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">Kontakt</h2>
+        <p class="text-sm text-muted">
+          For everyone, every day.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="border-t border-divider py-6 text-sm text-muted">
+      <p>© {year} Feel MySelf. Wszystkie prawa zastrzeżone.</p>
+    </div>
+  </Container>
+</footer>

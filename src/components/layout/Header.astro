@@ -1,0 +1,22 @@
+---
+import Container from '../primitives/Container.astro';
+import Image from '../primitives/Image.astro';
+import Nav from './Nav.astro';
+---
+<header class="border-b border-divider bg-white">
+  <Container>
+    <div class="flex items-center justify-between py-4">
+      <a href="/" aria-label="Feel MySelf — strona główna" class="block">
+        <Image
+          src="https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png"
+          alt="Feel MySelf"
+          width={120}
+          height={112}
+          loading="eager"
+          class="h-12 w-auto"
+        />
+      </a>
+      <Nav />
+    </div>
+  </Container>
+</header>
