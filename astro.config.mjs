@@ -4,7 +4,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://feelmyself.pl',
+  site: 'https://www.feelmyself.pl',
   output: 'static',
   trailingSlash: 'never',
 

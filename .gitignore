@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# vscode/cursor IDE settings
+.vscode/
+
+# Reference material (not source of truth, kept locally for audit)
+reference/scraped-pages/
+reference/theme-source/

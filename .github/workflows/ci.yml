@@ -31,4 +31,4 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          WOO_API_BASE: https://feelmyself.pl/wp-json/wc/store/v1
+          WOO_API_BASE: https://www.feelmyself.pl/wp-json/wc/store/v1
