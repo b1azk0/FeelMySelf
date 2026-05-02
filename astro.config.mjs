@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import { remarkResolveImages } from './src/lib/images.ts';
+
 export default defineConfig({
   site: 'https://www.feelmyself.pl',
   output: 'static',
@@ -18,6 +20,10 @@ export default defineConfig({
 
   build: {
     format: 'directory',
+  },
+
+  markdown: {
+    remarkPlugins: [remarkResolveImages],
   },
 
   vite: {
