@@ -1,0 +1,30 @@
+---
+// src/layouts/BaseLayout.astro
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const { title, description, canonical, noindex } = Astro.props;
+const fullCanonical = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+---
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={fullCanonical} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-white text-gray-900 antialiased">
+    <slot />
+  </body>
+</html>
