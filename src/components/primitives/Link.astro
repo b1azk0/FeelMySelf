@@ -1,0 +1,22 @@
+---
+interface Props {
+  href: string;
+  external?: boolean;
+  class?: string;
+  underline?: boolean;
+}
+
+const { href, external = false, class: className = '', underline = true } = Astro.props;
+
+const isExternal = external || /^https?:\/\//.test(href);
+const rel = isExternal ? 'noopener noreferrer' : undefined;
+const target = isExternal ? '_blank' : undefined;
+---
+<a
+  href={href}
+  rel={rel}
+  target={target}
+  class={`text-brand-primary hover:text-brand-secondary transition-colors ${underline ? 'underline underline-offset-2' : 'no-underline'} ${className}`}
+>
+  <slot />
+</a>
