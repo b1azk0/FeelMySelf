@@ -1,0 +1,56 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Container from '../components/primitives/Container.astro';
+import Image from '../components/primitives/Image.astro';
+import PostMeta from '../components/blog/PostMeta.astro';
+import PostBody from '../components/blog/PostBody.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const {
+  title,
+  excerpt,
+  seoTitle,
+  seoDescription,
+  date,
+  updated,
+  featuredImage,
+  categories,
+  canonicalUrl,
+  slug,
+} = post.data;
+
+const computedCanonical = canonicalUrl ?? new URL(`/blog/${slug ?? post.id}`, Astro.site).toString();
+---
+<BaseLayout
+  title={seoTitle ?? `${title} — Feel MySelf`}
+  description={seoDescription ?? excerpt}
+  canonical={computedCanonical}
+  noindex
+>
+  <article class="py-12">
+    <Container size="md">
+      <header class="mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
+        <PostMeta date={date} updated={updated} categories={categories} />
+      </header>
+      {featuredImage && (
+        <Image
+          src={featuredImage}
+          alt={title}
+          width={1200}
+          height={630}
+          loading="eager"
+          class="w-full aspect-video object-cover mb-8"
+        />
+      )}
+      <PostBody>
+        <slot />
+      </PostBody>
+    </Container>
+  </article>
+</BaseLayout>

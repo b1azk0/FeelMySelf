@@ -1,0 +1,30 @@
+---
+import Image from '../primitives/Image.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, excerpt, date, featuredImage, slug } = post.data;
+const href = `/blog/${slug ?? post.id}`;
+---
+<article class="group">
+  <a href={href} class="block">
+    {featuredImage && (
+      <Image
+        src={featuredImage}
+        alt={title}
+        width={600}
+        height={400}
+        class="w-full aspect-[3/2] object-cover mb-4 transition-opacity group-hover:opacity-90"
+      />
+    )}
+    <h3 class="text-xl font-bold group-hover:text-brand-secondary transition-colors">{title}</h3>
+    {excerpt && <p class="mt-2 text-muted line-clamp-3">{excerpt}</p>}
+    <time class="mt-2 block text-sm text-muted" datetime={date.toISOString()}>
+      {date.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })}
+    </time>
+  </a>
+</article>

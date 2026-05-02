@@ -4,6 +4,33 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Added — Workstream 3 (blog UI shell, no migration)
+
+- Blog content collection schema at `src/content.config.ts` using
+  Astro 6's `glob()` loader. Schema covers what a future migration
+  script would produce (title, slug, date, excerpt, featuredImage,
+  categories, tags, locale, SEO overrides, draft flag).
+- Blog UI components: PostCard (image + title + excerpt + date),
+  PostMeta (date + updated + categories chips), PostBody (Tailwind
+  Typography prose wrapper).
+- Tailwind Typography plugin via `@plugin` directive in `global.css`
+  (Tailwind v4 plugin loading).
+- BlogPostLayout (hero featured image + title + meta + body slot,
+  canonical to www.feelmyself.pl/blog/<slug>).
+- `/blog` index page — grid of PostCards or Polish empty state
+  (`Wkrótce pojawią się tu pierwsze wpisy.`).
+- `/blog/[slug]` dynamic route via getStaticPaths (generates 0 pages
+  currently since 0 posts).
+- `zod` installed directly (replacing the deprecated `astro:content`
+  re-export).
+
+### Skipped in WS3 (live site has 0 posts)
+
+- WP→Markdown migration script (Tasks 3.2, 3.3, 3.4 in plan).
+  Deferred until the first post is published. The schema in
+  `content.config.ts` is the contract any future migration must
+  satisfy.
+
 ### Added — Workstream 2 (design system + primitives + layout)
 
 - Design tokens audit at `reference/design-tokens.md`. Brand chrome is

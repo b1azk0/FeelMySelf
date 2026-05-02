@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/primitives/Container.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<BaseLayout
+  title="Blog — Feel MySelf"
+  description="Artykuły o samopoczuciu, wellness i self-care."
+  noindex
+>
+  <Container>
+    <header class="py-12">
+      <h1 class="text-4xl md:text-5xl font-bold">Blog</h1>
+    </header>
+
+    {sorted.length === 0 ? (
+      <div class="py-12 text-center">
+        <p class="text-lg text-muted">Wkrótce pojawią się tu pierwsze wpisy.</p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
+        {sorted.map((post) => <PostCard post={post} />)}
+      </div>
+    )}
+  </Container>
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  date: Date;
+  updated?: Date;
+  categories?: string[];
+}
+
+const { date, updated, categories = [] } = Astro.props;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
+  <time datetime={date.toISOString()}>{fmt(date)}</time>
+  {updated && (
+    <span>
+      Aktualizacja: <time datetime={updated.toISOString()}>{fmt(updated)}</time>
+    </span>
+  )}
+  {categories.length > 0 && (
+    <span class="flex flex-wrap gap-1">
+      {categories.map((c) => (
+        <span class="inline-block px-2 py-0.5 bg-card text-brand-primary text-xs">{c}</span>
+      ))}
+    </span>
+  )}
+</div>

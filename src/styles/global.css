@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
+
 /* Brand identity tokens — derived from Botiga customizer audit
    (see reference/design-tokens.md). The brand chrome is monochromatic;
    imagery carries the visual identity. */
