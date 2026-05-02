@@ -1,0 +1,24 @@
+# .github/workflows/refresh-content.yml
+name: Refresh Content
+
+on:
+  schedule:
+    # Nightly at 03:00 UTC (≈05:00 Warsaw)
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  trigger-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages rebuild
+        run: |
+          response=$(curl -s -X POST -w "%{http_code}" -o /tmp/cf_response.json "$DEPLOY_HOOK_URL")
+          echo "HTTP $response"
+          cat /tmp/cf_response.json
+          if [ "$response" != "200" ]; then
+            echo "Deploy hook failed with HTTP $response"
+            exit 1
+          fi
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CF_DEPLOY_HOOK_URL }}
