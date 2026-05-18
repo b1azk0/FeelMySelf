@@ -15,9 +15,12 @@ const products = await fetchAllProducts();
 
   <!-- 1. Hero -->
   <section class="relative isolate flex items-center justify-center min-h-[80vh] overflow-hidden">
-    <img
+    <Image
       src="/homepage/hero.png"
       alt=""
+      width={1456}
+      height={816}
+      loading="eager"
       class="absolute inset-0 w-full h-full object-cover -z-10"
     />
     <div class="absolute inset-0 bg-black/20 -z-10"></div>
@@ -64,9 +67,11 @@ const products = await fetchAllProducts();
 
   <!-- 4. Minimalism -->
   <section class="relative isolate flex items-center justify-center min-h-[60vh] overflow-hidden">
-    <img
+    <Image
       src="/homepage/minimalism-bg.png"
       alt=""
+      width={1456}
+      height={816}
       class="absolute inset-0 w-full h-full object-cover -z-10"
     />
     <div class="absolute inset-0 bg-black/30 -z-10"></div>
@@ -127,9 +132,11 @@ const products = await fetchAllProducts();
 
   <!-- 6. Final CTA -->
   <section class="relative isolate flex items-center justify-center min-h-[60vh] overflow-hidden">
-    <img
+    <Image
       src="/homepage/cta-bg.png"
       alt=""
+      width={1456}
+      height={816}
       class="absolute inset-0 w-full h-full object-cover -z-10"
     />
     <div class="absolute inset-0 bg-black/30 -z-10"></div>
