@@ -5,9 +5,15 @@ import Image from '../primitives/Image.astro';
 const year = new Date().getFullYear();
 
 const navLinks = [
-  { href: '/', label: 'Strona główna' },
-  { href: '/sklep', label: 'Sklep' },
+  { href: '/', label: 'Strona Główna' },
   { href: '/blog', label: 'Blog' },
+  { href: '/sklep', label: 'Sklep' },
+];
+
+const aboutLinks = [
+  { href: '#', label: 'Shipping' },
+  { href: '#', label: 'Terms' },
+  { href: '#', label: 'Policy' },
 ];
 ---
 <footer class="border-t border-divider bg-white mt-16">
@@ -43,10 +49,38 @@ const navLinks = [
       </div>
 
       <div>
-        <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">Kontakt</h2>
-        <p class="text-sm text-muted">
-          For everyone, every day.
-        </p>
+        <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">About</h2>
+        <ul class="space-y-2 mb-6">
+          {aboutLinks.map((l) => (
+            <li>
+              <a href={l.href} class="text-sm hover:text-brand-secondary transition-colors">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+        <div class="flex items-center gap-4">
+          <a
+            href="https://www.youtube.com/@FeelMySelf.beauty"
+            aria-label="Feel MySelf on YouTube"
+            class="text-brand-primary hover:text-brand-secondary transition-colors"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+          <a
+            href="https://www.instagram.com/feel.my.self.beauty/"
+            aria-label="Feel MySelf on Instagram"
+            class="text-brand-primary hover:text-brand-secondary transition-colors"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.775.13 4.602.398 3.635 1.366 2.668 2.333 2.4 3.506 2.342 4.783.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.058 1.277.326 2.45 1.294 3.417.967.967 2.14 1.236 3.417 1.294C8.332 21.986 8.741 22 12 22s3.668-.014 4.948-.072c1.277-.058 2.45-.326 3.417-1.294.967-.967 1.236-2.14 1.294-3.417.058-1.28.072-1.689.072-4.948 0-3.259-.014-3.668-.072-4.948-.058-1.277-.326-2.45-1.294-3.417C19.398.398 18.225.13 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
     </div>
