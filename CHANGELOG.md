@@ -4,6 +4,31 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Added — Homepage live-design port (between WS4 and WS5)
+
+- `scripts/fetch-homepage-assets.mjs` — one-shot Node script that
+  downloads the live homepage's 6 brand assets into
+  `public/homepage/`. Idempotent, re-runnable when live graphics
+  change. Source-of-truth asset list lives in the script.
+- `public/homepage/` — bundled imagery (hero, white logo,
+  minimalism + CTA backgrounds, VegeZone + Superpharm partner logos).
+- `src/pages/index.astro` — replaces the WS1 placeholder with a
+  faithful 6-section port of www.feelmyself.pl: Hero → Brand
+  philosophy → Featured products → Minimalism → Partners → Final CTA.
+  Featured products use `fetchAllProducts()` and reuse the WS4
+  `ProductCard`.
+- `src/components/layout/Header.astro` — adds a plain-HTML search
+  form that GETs to `https://www.feelmyself.pl/?s=…`. No JS.
+- `src/components/layout/Footer.astro` — restructured to match live:
+  logo cluster / Nawigacja / About (Shipping/Terms/Policy '#'
+  placeholders mirroring live) + YouTube + Instagram inline-SVG
+  icons / copyright row.
+- `src/components/layout/Nav.astro` — reduced to `Strona Główna` +
+  `Sklep` to match live header.
+
+Spec: `docs/superpowers/specs/2026-05-18-homepage-live-design-port.md`.
+Plan: `docs/superpowers/plans/2026-05-18-homepage-live-design-port.md`.
+
 ### Added — Workstream 4 (product / category integration)
 
 - `src/lib/woo.ts` — typed Woo Store API client. 8 unit tests
