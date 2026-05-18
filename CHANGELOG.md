@@ -4,6 +4,19 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Changed — Header restructured to match live chrome pixel-perfectly
+
+- 3-column grid: nav left (`Sklep` + `Blog`) / logo center (h-16, ~64px
+  close to live's 75px) / search loupe right (live SVG geometry).
+- Nav drops `Strona Główna` — logo is the home link, per live convention.
+- Search loupe uses `<details>` to expand a text-input form on click
+  (zero JS, native HTML). Form GETs to `https://www.feelmyself.pl/?s=…`.
+- `Header.astro` accepts `transparent?: boolean`. When true, header is
+  `position: absolute` over the page content with no background or
+  border. Homepage passes it via the new `BaseLayout` prop
+  `transparentHeader`. Other pages (product, blog, category) keep the
+  solid white + border-bottom variant — no regressions.
+
 ### Added — Homepage live-design port (between WS4 and WS5)
 
 - `scripts/fetch-homepage-assets.mjs` — one-shot Node script that
