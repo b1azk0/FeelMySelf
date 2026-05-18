@@ -1,13 +1,147 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/primitives/Container.astro';
+import Image from '../components/primitives/Image.astro';
+import ProductCard from '../components/product/ProductCard.astro';
+import { fetchAllProducts } from '../lib/woo';
+
+const products = await fetchAllProducts();
 ---
-<BaseLayout title="FeelMySelf — Astro staging" description="Placeholder homepage. Phase 1 scaffold." noindex>
-  <main class="mx-auto max-w-2xl px-4 py-16">
-    <h1 class="text-4xl font-bold">FeelMySelf — staging</h1>
-    <p class="mt-4 text-gray-600">
-      This is the Astro staging build. Real content lands during Phase 1
-      implementation.
-    </p>
-  </main>
+<BaseLayout
+  title="Strona Główna - Feel MySelf"
+  description="Feel MySelf – Wyrażaj siebie bez ograniczeń. Kosmetyki dla każdego"
+  noindex
+>
+
+  <!-- 1. Hero -->
+  <section class="relative isolate flex items-center justify-center min-h-[80vh] overflow-hidden">
+    <img
+      src="/homepage/hero.png"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover -z-10"
+    />
+    <div class="absolute inset-0 bg-black/20 -z-10"></div>
+    <Container size="lg" class="text-center text-white py-24">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+        Wyrażaj siebie. Zadbaj o siebie. Bez kompromisów.
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl max-w-3xl mx-auto">
+        Nie dzielimy ludzi na kategorie. Tworzymy skuteczne, naturalne formuły,
+        które służą wszystkim — niezależnie od tożsamości, wieku czy wyglądu.
+      </p>
+    </Container>
+  </section>
+
+  <!-- 2. Brand philosophy -->
+  <section class="bg-white py-20">
+    <Container size="md" class="text-center">
+      <Image
+        src="/homepage/logo-white.png"
+        alt=""
+        width={160}
+        height={150}
+        class="h-32 w-auto mx-auto mb-8 invert"
+      />
+      <h3 class="text-2xl sm:text-3xl font-extrabold mb-6">Kosmetyki Feel My Self</h3>
+      <p class="text-base sm:text-lg leading-relaxed">
+        Feel My Self to więcej niż marka – to manifest wolności, autentyczności
+        i samoakceptacji. Tworzymy kosmetyki i produkty do pielęgnacji dla
+        wszystkich, bez wyjątków. Dla tych, którzy nie boją się być sobą, którzy
+        wierzą, że piękno to nie schemat, lecz odwaga do wyrażania siebie na
+        własnych zasadach.
+      </p>
+    </Container>
+  </section>
+
+  <!-- 3. Featured products -->
+  <section class="bg-white py-12 border-t border-divider">
+    <Container size="xl">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+        {products.map((product) => <ProductCard product={product} />)}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 4. Minimalism -->
+  <section class="relative isolate flex items-center justify-center min-h-[60vh] overflow-hidden">
+    <img
+      src="/homepage/minimalism-bg.png"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover -z-10"
+    />
+    <div class="absolute inset-0 bg-black/30 -z-10"></div>
+    <Container size="md" class="text-center text-white py-20">
+      <h2 class="text-3xl sm:text-4xl font-extrabold mb-6">
+        Minimalizm, który działa. Jeden produkt. Wiele potrzeb.
+      </h2>
+      <p class="text-base sm:text-lg max-w-2xl mx-auto">
+        Wierzymy, że skuteczna pielęgnacja nie potrzebuje dziesiątek kosmetyków.
+        Tworzymy uniwersalne formuły, które dbają o Twoją skórę — bez zbędnych
+        warstw.
+      </p>
+    </Container>
+  </section>
+
+  <!-- 5. Partners -->
+  <section class="bg-white py-16">
+    <Container size="lg" class="text-center">
+      <h2 class="text-2xl sm:text-3xl font-extrabold mb-4">Nasi partnerzy</h2>
+      <p class="text-base sm:text-lg text-muted mb-10">
+        Kosmetyki Feel My Self znajdziesz w dobrych drogeriach oraz w sklepach
+        partnerskich
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-10">
+        <a
+          href="https://vegezone.pl"
+          aria-label="VegeZone.pl"
+          target="_blank"
+          rel="noopener"
+          class="block hover:opacity-80 transition-opacity"
+        >
+          <Image
+            src="/homepage/partner-vegezone.webp"
+            alt="VegeZone.pl"
+            width={140}
+            height={140}
+            class="h-24 w-auto"
+          />
+        </a>
+        <a
+          href="https://www.superpharm.pl"
+          aria-label="Superpharm.pl"
+          target="_blank"
+          rel="noopener"
+          class="block hover:opacity-80 transition-opacity"
+        >
+          <Image
+            src="/homepage/partner-superpharm.png"
+            alt="Superpharm.pl"
+            width={200}
+            height={80}
+            class="h-16 w-auto"
+          />
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <!-- 6. Final CTA -->
+  <section class="relative isolate flex items-center justify-center min-h-[60vh] overflow-hidden">
+    <img
+      src="/homepage/cta-bg.png"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover -z-10"
+    />
+    <div class="absolute inset-0 bg-black/30 -z-10"></div>
+    <Container size="md" class="text-center text-white py-20">
+      <h2 class="text-3xl sm:text-4xl font-extrabold mb-6">
+        Poczuj siebie. Każdego dnia. Bez wyjątków.
+      </h2>
+      <p class="text-base sm:text-lg max-w-2xl mx-auto">
+        Feel My Self to przestrzeń, w której nie musisz nikogo udawać. Naturalne
+        kosmetyki, które wspierają Twoją codzienność — taką, jaką jest.
+      </p>
+    </Container>
+  </section>
+
 </BaseLayout>
