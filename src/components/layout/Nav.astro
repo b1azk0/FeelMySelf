@@ -1,14 +1,14 @@
 ---
 const links = [
-  { href: '/', label: 'Strona Główna' },
   { href: '/sklep', label: 'Sklep' },
+  { href: '/blog', label: 'Blog' },
 ];
 ---
 <nav class="flex items-center gap-6" aria-label="Główna nawigacja">
   {links.map((l) => (
     <a
       href={l.href}
-      class="text-brand-primary hover:text-brand-secondary transition-colors text-sm font-medium"
+      class="hover:opacity-70 transition-opacity text-sm font-medium"
     >
       {l.label}
     </a>

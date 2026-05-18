@@ -9,9 +9,10 @@ interface Props {
   canonical?: string;
   noindex?: boolean;
   bareLayout?: boolean;
+  transparentHeader?: boolean;
 }
 
-const { title, description, canonical, noindex, bareLayout = false } = Astro.props;
+const { title, description, canonical, noindex, bareLayout = false, transparentHeader = false } = Astro.props;
 const fullCanonical = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 ---
 <!doctype html>
@@ -27,7 +28,7 @@ const fullCanonical = canonical ?? new URL(Astro.url.pathname, Astro.site).toStr
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body class="bg-white antialiased min-h-screen flex flex-col">
-    {!bareLayout && <Header />}
+    {!bareLayout && <Header transparent={transparentHeader} />}
     <main class="flex-1">
       <slot />
     </main>
