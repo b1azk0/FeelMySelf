@@ -5,8 +5,8 @@ import Nav from './Nav.astro';
 ---
 <header class="border-b border-divider bg-white">
   <Container>
-    <div class="flex items-center justify-between py-4">
-      <a href="/" aria-label="Feel MySelf — strona główna" class="block">
+    <div class="flex items-center justify-between gap-6 py-4">
+      <a href="/" aria-label="Feel MySelf — strona główna" class="block shrink-0">
         <Image
           src="https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png"
           alt="Feel MySelf"
@@ -16,7 +16,24 @@ import Nav from './Nav.astro';
           class="h-12 w-auto"
         />
       </a>
-      <Nav />
+      <div class="flex items-center gap-6">
+        <Nav />
+        <form
+          action="https://www.feelmyself.pl/"
+          method="get"
+          role="search"
+          class="hidden sm:flex items-center"
+        >
+          <label class="sr-only" for="site-search">Szukaj</label>
+          <input
+            id="site-search"
+            type="search"
+            name="s"
+            placeholder="Szukaj…"
+            class="border border-divider px-3 py-1.5 text-sm focus:outline-none focus:border-brand-primary"
+          />
+        </form>
+      </div>
     </div>
   </Container>
 </header>
