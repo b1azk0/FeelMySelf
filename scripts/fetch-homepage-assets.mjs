@@ -27,7 +27,10 @@ for (const { url, file } of ASSETS) {
   const dest = join(OUT_DIR, file);
   process.stdout.write(`→ ${file}  `);
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'feelmyself-asset-sync/1.0' } });
+    const res = await fetch(url, {
+      signal: AbortSignal.timeout(30_000),
+      headers: { 'User-Agent': 'feelmyself-asset-sync/1.0' },
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());
     await writeFile(dest, buf);
