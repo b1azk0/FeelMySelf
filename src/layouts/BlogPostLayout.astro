@@ -27,7 +27,7 @@ const {
 const computedCanonical = canonicalUrl ?? new URL(`/blog/${slug ?? post.id}`, Astro.site).toString();
 ---
 <BaseLayout
-  title={seoTitle ?? `${title} — Feel MySelf`}
+  title={seoTitle ?? `${title} – Feel My Self`}
   description={seoDescription ?? excerpt}
   canonical={computedCanonical}
   noindex

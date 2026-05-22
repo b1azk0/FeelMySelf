@@ -9,15 +9,20 @@ const navLinks = [
   { href: '/sklep', label: 'Sklep' },
   { href: '/blog', label: 'Blog' },
 ];
+
+const legalLinks = [
+  { href: '/regulamin', label: 'Regulamin' },
+  { href: '/polityka-prywatnosci', label: 'Polityka prywatności' },
+];
 ---
 <footer class="border-t border-divider bg-white mt-16">
   <Container>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
 
       <div class="flex items-start gap-4">
         <Image
           src="https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png"
-          alt="Feel MySelf"
+          alt="Feel My Self"
           width={100}
           height={93}
           class="h-20 w-auto"
@@ -43,11 +48,22 @@ const navLinks = [
       </div>
 
       <div>
+        <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">Informacje</h2>
+        <ul class="space-y-2">
+          {legalLinks.map((l) => (
+            <li>
+              <a href={l.href} class="text-sm hover:text-brand-secondary transition-colors">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
         <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">Obserwuj</h2>
         <div class="flex items-center gap-4">
           <a
             href="https://www.youtube.com/@FeelMySelf.beauty"
-            aria-label="Feel MySelf na YouTube"
+            aria-label="Feel My Self na YouTube"
             class="text-brand-primary hover:text-brand-secondary transition-colors"
             target="_blank"
             rel="noopener"
@@ -58,7 +74,7 @@ const navLinks = [
           </a>
           <a
             href="https://www.instagram.com/feel.my.self.beauty/"
-            aria-label="Feel MySelf na Instagramie"
+            aria-label="Feel My Self na Instagramie"
             class="text-brand-primary hover:text-brand-secondary transition-colors"
             target="_blank"
             rel="noopener"
@@ -73,7 +89,7 @@ const navLinks = [
     </div>
 
     <div class="border-t border-divider py-6 text-sm text-muted">
-      <p>© {year} Feel MySelf. Wszystkie prawa zastrzeżone.</p>
+      <p>© {year} Feel My Self. Wszystkie prawa zastrzeżone.</p>
     </div>
   </Container>
 </footer>

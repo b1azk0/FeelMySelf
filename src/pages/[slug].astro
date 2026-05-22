@@ -35,7 +35,7 @@ const { category, products } = Astro.props as Props;
 const plainDescription = category.description.replace(/<[^>]+>/g, '').slice(0, 160);
 ---
 <BaseLayout
-  title={`${category.name} — Feel MySelf`}
+  title={`${category.name} – Feel My Self`}
   description={plainDescription || `Produkty z kategorii ${category.name}`}
   canonical={new URL(`/${category.slug}/`, Astro.site).toString()}
   noindex

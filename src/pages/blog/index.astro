@@ -8,7 +8,7 @@ const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const sorted = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 <BaseLayout
-  title="Blog — Feel MySelf"
+  title="Blog – Feel My Self"
   description="Artykuły o samopoczuciu, wellness i self-care."
   noindex
 >

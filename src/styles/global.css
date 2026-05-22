@@ -48,3 +48,24 @@
     letter-spacing: 0;
   }
 }
+
+/* Sticky-on-scroll for the transparent (home) header.
+   Solid header is already position: sticky via Tailwind. This block
+   handles the transparent-to-solid transition once the user scrolls
+   past the hero. JS toggles .is-scrolled on the <header data-transparent>. */
+header[data-transparent="true"] {
+  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+}
+
+header[data-transparent="true"].is-scrolled {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: white;
+  color: var(--color-brand-primary);
+  border-bottom: 1px solid var(--color-divider);
+  box-shadow: var(--shadow-card);
+}
+
+header[data-transparent="true"].is-scrolled .logo-white { display: none; }
+header[data-transparent="true"]:not(.is-scrolled) .logo-black { display: none; }

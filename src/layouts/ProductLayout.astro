@@ -14,7 +14,7 @@ const { product } = Astro.props;
 const plainShortDesc = product.shortDescription.replace(/<[^>]+>/g, '').slice(0, 160);
 ---
 <BaseLayout
-  title={`${product.name} — Feel MySelf`}
+  title={`${product.name} – Feel My Self`}
   description={plainShortDesc || product.name}
   canonical={product.permalink}
   noindex

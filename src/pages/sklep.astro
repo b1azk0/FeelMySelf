@@ -14,16 +14,16 @@ const [products, categories] = await Promise.all([
 ]);
 ---
 <BaseLayout
-  title="Sklep — Feel MySelf"
-  description="Wszystkie kosmetyki Feel MySelf — naturalne formuły dla każdego, bez wyjątków."
+  title="Sklep – Feel My Self"
+  description="Wszystkie kosmetyki Feel My Self – naturalne formuły dla każdego, bez wyjątków."
   noindex
 >
   <Container>
     <header class="py-12 text-center">
       <h1 class="text-4xl md:text-5xl font-extrabold">Sklep</h1>
       <p class="mt-4 text-base sm:text-lg text-muted max-w-2xl mx-auto">
-        Wszystkie produkty Feel MySelf w jednym miejscu. Skuteczne, naturalne
-        formuły — dla każdego, bez wyjątków.
+        Wszystkie produkty Feel My Self w jednym miejscu. Skuteczne, naturalne
+        formuły – dla każdego, bez wyjątków.
       </p>
     </header>
 
@@ -77,7 +77,7 @@ const [products, categories] = await Promise.all([
       const status = document.getElementById('search-status');
       if (status) {
         status.textContent = visible
-          ? `Wyniki dla „${params.get('s')}" — ${visible} ${visible === 1 ? 'produkt' : visible < 5 ? 'produkty' : 'produktów'}.`
+          ? `Wyniki dla „${params.get('s')}" – ${visible} ${visible === 1 ? 'produkt' : visible < 5 ? 'produkty' : 'produktów'}.`
           : `Brak wyników dla „${params.get('s')}".`;
         status.classList.remove('hidden');
       }

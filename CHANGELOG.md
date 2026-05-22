@@ -4,6 +4,61 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Added — Header sticky on scroll
+
+- Solid header (every page except home) is now `sticky top-0 z-50` —
+  pure CSS, no JS. Stays at the top as the user scrolls the page.
+- Transparent header (home only) starts `position: absolute` over the
+  hero. Tiny inline script (~10 lines) toggles `.is-scrolled` on the
+  `<header data-transparent>` when `scrollY > 80`. CSS in `global.css`
+  transitions to `position: fixed`, white background, black text, with
+  a subtle shadow.
+- Logo swap on the transparent header: both the white and the black
+  logo are rendered, and CSS hides one based on `.is-scrolled`. No
+  flash on transition.
+
+### Added — Legal pages (Regulamin + Polityka prywatności)
+
+- `src/pages/regulamin.md` — full PL shop terms (Regulamin sklepu
+  internetowego), 11 paragraphs covering definitions, ordering flow,
+  płatności, dostawa, 14-day prawo odstąpienia (with the full PL
+  withdrawal form template embedded), wyłączenia z art. 38 ust. 5 dla
+  kosmetyków, rękojmia per rozdz. 5a ustawy o prawach konsumenta in
+  the post-2023 wording, ODR platform link, prawo właściwe, sąd
+  właściwy. Drafted by a legal+copy agent against real company data
+  pulled from the public Polish KRS API.
+- `src/pages/polityka-prywatnosci.md` — full RODO Art. 13 + cookies
+  notice, 12 sections including a structured table of cele × podstawy
+  prawne × dane × okres przechowywania, recipient categories (Hetzner,
+  Cloudflare, payment operator, courier, GA4, Meta Pixel), transfer
+  outside EOG (SCC + EU-US DPF mechanism), full rights catalog,
+  itemized cookie table.
+- `src/layouts/LegalLayout.astro` — light wrapper around BaseLayout
+  using `prose prose-neutral` typography utilities, with the Obowiązuje
+  od date rendered below the article body.
+- **Company facts** populated from the official MS KRS API
+  (Bloom Labs sp. z o.o., KRS 0001127872, NIP 7722438117, REGON
+  529741089, siedziba Jedlno Pierwsze 135, kapitał 5 000,00 zł).
+- Contact emails left as placeholders (`kontakt@`, `reklamacje@`,
+  `rodo@feelmyself.pl`) — Blazej to confirm mailboxes before public
+  cutover.
+- `Footer.astro` — new `Informacje` column linking the two legal pages.
+  Footer grid expanded to `grid-cols-1 md:grid-cols-2 lg:grid-cols-4`:
+  Logo / Nawigacja / Informacje / Obserwuj.
+
+### Changed — Brand name canonicalised + PL dash convention
+
+- Brand name sitewide: `Feel MySelf` → **`Feel My Self`** (three words),
+  as the wordmark. Swept across all `.astro` / `.ts` / `.md` files in
+  `src/` — titles, alt text, aria-labels, copyright, body copy.
+- All em-dashes `—` swept to en-dashes `–` per Polish typographic
+  convention (półpauza z odstępami). Affected: every `.astro` and `.md`
+  surface with body copy.
+- Homepage `<title>` rewritten from `"Strona Główna - Feel MySelf"` to
+  `"Feel My Self – wyrażaj siebie bez ograniczeń"` — brand-led, en-dash,
+  ready for SEO once `noindex` is lifted in Phase 3.
+- Homepage meta description tightened.
+
 ### Changed — Homepage typography, CTAs, heading outline, footer hygiene
 
 - **Body weight 200 → 400** in `global.css`. Was visibly too thin once

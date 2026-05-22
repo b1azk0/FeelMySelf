@@ -10,14 +10,13 @@ interface Props {
 const { transparent = false } = Astro.props;
 
 const headerClass = transparent
-  ? 'absolute inset-x-0 top-0 z-50 bg-transparent text-white'
-  : 'relative border-b border-divider bg-white';
+  ? 'absolute inset-x-0 top-0 z-50 bg-transparent text-white transition-colors duration-200'
+  : 'sticky top-0 z-50 border-b border-divider bg-white';
 
-const logoSrc = transparent
-  ? '/homepage/logo-white.png'
-  : 'https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png';
+const blackLogoSrc = 'https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png';
+const whiteLogoSrc = '/homepage/logo-white.png';
 ---
-<header class={headerClass}>
+<header class={headerClass} data-transparent={transparent}>
   <Container size="xl">
     <div class="grid grid-cols-3 items-center min-h-[80px] py-4 gap-4">
 
@@ -43,15 +42,36 @@ const logoSrc = transparent
       </div>
 
       <div class="justify-self-center">
-        <a href="/" aria-label="Feel MySelf — strona główna" class="block">
-          <Image
-            src={logoSrc}
-            alt="Feel MySelf"
-            width={150}
-            height={140}
-            loading="eager"
-            class="h-16 w-auto"
-          />
+        <a href="/" aria-label="Feel My Self – strona główna" class="block">
+          {transparent ? (
+            <>
+              <Image
+                src={whiteLogoSrc}
+                alt="Feel My Self"
+                width={150}
+                height={140}
+                loading="eager"
+                class="logo-white h-16 w-auto"
+              />
+              <Image
+                src={blackLogoSrc}
+                alt="Feel My Self"
+                width={150}
+                height={140}
+                loading="eager"
+                class="logo-black h-16 w-auto"
+              />
+            </>
+          ) : (
+            <Image
+              src={blackLogoSrc}
+              alt="Feel My Self"
+              width={150}
+              height={140}
+              loading="eager"
+              class="h-16 w-auto"
+            />
+          )}
         </a>
       </div>
 
@@ -88,3 +108,17 @@ const logoSrc = transparent
     </div>
   </Container>
 </header>
+
+{transparent && (
+  <script is:inline>
+    (function () {
+      const header = document.querySelector('header[data-transparent="true"]');
+      if (!header) return;
+      const onScroll = () => {
+        header.classList.toggle('is-scrolled', window.scrollY > 80);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+)}
