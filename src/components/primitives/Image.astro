@@ -9,6 +9,7 @@ interface Props {
   class?: string;
   loading?: 'lazy' | 'eager';
   decoding?: 'async' | 'sync' | 'auto';
+  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   class: className = '',
   loading = 'lazy',
   decoding = 'async',
+  fetchpriority,
 } = Astro.props;
 
 const resolvedSrc = resolveImageUrl(src);
@@ -30,5 +32,6 @@ const resolvedSrc = resolveImageUrl(src);
   height={height}
   loading={loading}
   decoding={decoding}
+  fetchpriority={fetchpriority}
   class={className}
 />

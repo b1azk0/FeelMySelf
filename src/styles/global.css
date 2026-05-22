@@ -23,9 +23,10 @@
   --shadow-card-hover: 0 4px 12px rgb(0 0 0 / 0.10);
 }
 
-/* Brand font — locally hosted on prod, but in Phase 1 we use the
-   Google Fonts CDN. Phase 3 perf pass may self-host. */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;800&display=swap');
+/* Brand font Inter is loaded via <link> tags in BaseLayout.astro head.
+   Putting the @import here breaks: per CSS spec, @import must precede
+   all other rules — Tailwind v4 / Lightning CSS strips this one because
+   it sits after @theme, leaving the page rendering in system-ui. */
 
 @layer base {
   html {

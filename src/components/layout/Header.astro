@@ -10,8 +10,12 @@ interface Props {
 const { transparent = false } = Astro.props;
 
 const headerClass = transparent
-  ? 'absolute inset-x-0 top-0 z-50 bg-transparent'
+  ? 'absolute inset-x-0 top-0 z-50 bg-transparent text-white'
   : 'relative border-b border-divider bg-white';
+
+const logoSrc = transparent
+  ? '/homepage/logo-white.png'
+  : 'https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png';
 ---
 <header class={headerClass}>
   <Container size="xl">
@@ -24,7 +28,7 @@ const headerClass = transparent
       <div class="justify-self-center">
         <a href="/" aria-label="Feel MySelf — strona główna" class="block">
           <Image
-            src="https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png"
+            src={logoSrc}
             alt="Feel MySelf"
             width={150}
             height={140}

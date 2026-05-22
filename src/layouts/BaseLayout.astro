@@ -26,6 +26,12 @@ const fullCanonical = canonical ?? new URL(Astro.url.pathname, Astro.site).toStr
     <link rel="canonical" href={fullCanonical} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;800&display=swap"
+    />
   </head>
   <body class="bg-white antialiased min-h-screen flex flex-col">
     {!bareLayout && <Header transparent={transparentHeader} />}

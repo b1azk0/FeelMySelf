@@ -4,6 +4,30 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Fixed — Homepage audit top-3 fixes (fonts, hero perf, transparent-header contrast)
+
+- **Inter font now actually loads.** The `@import` in `src/styles/global.css`
+  was placed after `@theme` and got stripped by Tailwind v4 / Lightning CSS
+  during compilation — the served bundle had zero font references, so the
+  whole site was rendering in `system-ui`. Replaced with `<link rel="preconnect">`
+  + stylesheet tags in `BaseLayout.astro` `<head>`. Verified Inter weights
+  200/400/500/600/800 are now requested.
+- **Hero PNGs converted to WebP** (`hero`, `minimalism-bg`, `cta-bg`).
+  Total page-asset payload dropped from **1.13 MB → 230 KB** (~80% smaller,
+  ~933 KB saved). q=82 visually lossless. Hero gets `fetchpriority="high"` —
+  `Image.astro` now forwards that attribute. Source PNGs retained;
+  `scripts/fetch-homepage-assets.mjs` regenerates the `.webp` variants
+  via `cwebp` on every re-run so the two formats stay in sync.
+- **Transparent header now contrasts against the hero.** When
+  `transparent`, the header swaps to the local white logo
+  (`/homepage/logo-white.png`) and adds `text-white` so the Nav links
+  and search icon inherit white via `currentColor`. Previously the black
+  logo + black-by-default nav rendered illegibly over the painterly hero.
+
+Source: 4-agent UX/UI + design + frontend + copy audit run 2026-05-22.
+Remaining audit findings (mobile menu, body weight 200, no CTAs, footer
+About column English, etc.) tracked for the next pass.
+
 ### Changed — Header restructured to match live chrome pixel-perfectly
 
 - 3-column grid: nav left (`Sklep` + `Blog`) / logo center (h-16, ~64px
