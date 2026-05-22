@@ -41,12 +41,46 @@ const [products, categories] = await Promise.all([
       </nav>
     )}
 
+    <p
+      id="search-status"
+      class="hidden text-center text-muted pb-6"
+      aria-live="polite"
+    ></p>
+
     {products.length === 0 ? (
       <p class="py-12 text-center text-muted">Brak produktów.</p>
     ) : (
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-16">
+      <div
+        id="product-grid"
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-16"
+      >
         {products.map((p) => <ProductCard product={p} />)}
       </div>
     )}
   </Container>
+
+  <script is:inline>
+    (function () {
+      const params = new URLSearchParams(location.search);
+      const q = (params.get('s') || '').trim().toLowerCase();
+      if (!q) return;
+      const grid = document.getElementById('product-grid');
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll('article[data-product-name]'));
+      let visible = 0;
+      cards.forEach((card) => {
+        const name = (card.dataset.productName || '').toLowerCase();
+        const match = name.includes(q);
+        card.hidden = !match;
+        if (match) visible++;
+      });
+      const status = document.getElementById('search-status');
+      if (status) {
+        status.textContent = visible
+          ? `Wyniki dla „${params.get('s')}" — ${visible} ${visible === 1 ? 'produkt' : visible < 5 ? 'produkty' : 'produktów'}.`
+          : `Brak wyników dla „${params.get('s')}".`;
+        status.classList.remove('hidden');
+      }
+    })();
+  </script>
 </BaseLayout>

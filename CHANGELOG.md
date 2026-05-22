@@ -4,6 +4,25 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Added — Mobile hamburger menu + on-site search
+
+- `Header.astro` — on `<md` viewports the inline `Sklep / Blog` nav is
+  hidden in favour of a hamburger `<details>` that drops a vertical
+  menu below the header. Zero JS, matches the existing search
+  disclosure pattern. Desktop chrome unchanged.
+- `Nav.astro` — gains an `orientation?: 'horizontal' | 'vertical'`
+  prop so the same component drives both the inline desktop nav and
+  the stacked mobile drawer.
+- **Search no longer teleports users to live prod.** Header search
+  form action changed from `https://www.feelmyself.pl/?s=…` to
+  `/sklep?s=…`.
+- `/sklep` reads `?s=` and runs a small inline client-side filter
+  over the product grid (matches against product name,
+  case-insensitive). Renders a polite live status: `Wyniki dla „X" —
+  N produktów.` or `Brak wyników dla „X".`
+- `ProductCard.astro` — gains a `data-product-name` attribute hook
+  for the filter.
+
 ### Changed — Product card + price typography unified
 
 - `ProductCard.astro` — title was `font-bold` at inherited 16px; now

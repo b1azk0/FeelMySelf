@@ -1,15 +1,26 @@
 ---
+interface Props {
+  orientation?: 'horizontal' | 'vertical';
+}
+
+const { orientation = 'horizontal' } = Astro.props;
+
 const links = [
   { href: '/sklep', label: 'Sklep' },
   { href: '/blog', label: 'Blog' },
 ];
+
+const navClass = orientation === 'vertical'
+  ? 'flex flex-col gap-4'
+  : 'flex items-center gap-6';
+
+const linkClass = orientation === 'vertical'
+  ? 'hover:opacity-70 transition-opacity text-base font-medium'
+  : 'hover:opacity-70 transition-opacity text-sm font-medium';
 ---
-<nav class="flex items-center gap-6" aria-label="Główna nawigacja">
+<nav class={navClass} aria-label="Główna nawigacja">
   {links.map((l) => (
-    <a
-      href={l.href}
-      class="hover:opacity-70 transition-opacity text-sm font-medium"
-    >
+    <a href={l.href} class={linkClass}>
       {l.label}
     </a>
   ))}

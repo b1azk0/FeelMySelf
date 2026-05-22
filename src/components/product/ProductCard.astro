@@ -10,7 +10,7 @@ interface Props {
 const { product } = Astro.props;
 const cover = product.images[0];
 ---
-<article class="group">
+<article class="group" data-product-name={product.name}>
   <a href={`/produkt/${product.slug}`} class="block">
     {cover && (
       <Image

@@ -22,7 +22,24 @@ const logoSrc = transparent
     <div class="grid grid-cols-3 items-center min-h-[80px] py-4 gap-4">
 
       <div class="justify-self-start">
-        <Nav />
+        <div class="hidden md:block">
+          <Nav />
+        </div>
+        <details class="md:hidden relative">
+          <summary
+            class="cursor-pointer list-none inline-flex items-center p-2 hover:opacity-70 transition-opacity"
+            aria-label="Otwórz menu"
+          >
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+              <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+            </svg>
+          </summary>
+          <div
+            class="absolute left-0 top-full mt-2 bg-white text-brand-primary border border-divider shadow-card p-5 min-w-[180px] z-50"
+          >
+            <Nav orientation="vertical" />
+          </div>
+        </details>
       </div>
 
       <div class="justify-self-center">
@@ -50,10 +67,10 @@ const logoSrc = transparent
             </svg>
           </summary>
           <form
-            action="https://www.feelmyself.pl/"
+            action="/sklep"
             method="get"
             role="search"
-            class="absolute right-0 top-full mt-2 bg-white border border-divider shadow-card p-3 flex items-center gap-2 z-50"
+            class="absolute right-0 top-full mt-2 bg-white text-brand-primary border border-divider shadow-card p-3 flex items-center gap-2 z-50"
           >
             <label class="sr-only" for="site-search">Szukaj</label>
             <input
