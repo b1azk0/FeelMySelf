@@ -4,6 +4,18 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Fixed — Cloudflare Workers Builds deploy
+
+- Added explicit `wrangler.jsonc` after CF migrated this project from
+  Pages to Workers Builds. The first auto-bootstrapped deploy ran
+  `astro add cloudflare`, converted the project to SSR mode, then the
+  asset upload API returned `code: 10013` and the deploy failed.
+- New config declares the project as Workers Static Assets:
+  `name: feelmyself-stage`, `assets.directory: ./dist`,
+  `not_found_handling: "404-page"`. No Astro CF adapter — the site is
+  fully static, no SSR.
+- `.wrangler/` added to `.gitignore`.
+
 ### Added — Header sticky on scroll
 
 - Solid header (every page except home) is now `sticky top-0 z-50` —
