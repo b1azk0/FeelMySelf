@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/primitives/Container.astro';
+import ProductCard from '../components/product/ProductCard.astro';
+import {
+  fetchAllProducts,
+  fetchAllCategories,
+  categoryPath,
+} from '../lib/woo';
+
+const [products, categories] = await Promise.all([
+  fetchAllProducts(),
+  fetchAllCategories(),
+]);
+---
+<BaseLayout
+  title="Sklep — Feel MySelf"
+  description="Wszystkie kosmetyki Feel MySelf — naturalne formuły dla każdego, bez wyjątków."
+  noindex
+>
+  <Container>
+    <header class="py-12 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold">Sklep</h1>
+      <p class="mt-4 text-base sm:text-lg text-muted max-w-2xl mx-auto">
+        Wszystkie produkty Feel MySelf w jednym miejscu. Skuteczne, naturalne
+        formuły — dla każdego, bez wyjątków.
+      </p>
+    </header>
+
+    {categories.length > 0 && (
+      <nav aria-label="Kategorie produktów" class="flex flex-wrap justify-center gap-2 pb-8">
+        {categories.map((c) => (
+          <a
+            href={categoryPath(c.slug)}
+            class="inline-flex items-center text-sm border border-divider px-4 py-2 hover:border-brand-primary transition-colors"
+          >
+            {c.name}
+            <span class="ml-2 text-muted">({c.count})</span>
+          </a>
+        ))}
+      </nav>
+    )}
+
+    {products.length === 0 ? (
+      <p class="py-12 text-center text-muted">Brak produktów.</p>
+    ) : (
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-16">
+        {products.map((p) => <ProductCard product={p} />)}
+      </div>
+    )}
+  </Container>
+</BaseLayout>

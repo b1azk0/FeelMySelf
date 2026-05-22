@@ -4,6 +4,16 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Added — `/sklep` catalog page
+
+- `src/pages/sklep.astro` — full product catalog. Solid header, "Sklep"
+  H1 + manifesto subline, category chips (linking to `/[slug]` category
+  pages via `categoryPath()`), then a 2/3/4-column responsive
+  `ProductCard` grid mirroring `/[slug].astro`'s visual rhythm.
+- Resolves the 404 the Nav has been pointing at since WS4. The
+  Nav `/sklep` link is now live.
+- Phase 1 noindex retained. WS5 work officially started.
+
 ### Fixed — Homepage audit top-3 fixes (fonts, hero perf, transparent-header contrast)
 
 - **Inter font now actually loads.** The `@import` in `src/styles/global.css`
