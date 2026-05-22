@@ -5,15 +5,9 @@ import Image from '../primitives/Image.astro';
 const year = new Date().getFullYear();
 
 const navLinks = [
-  { href: '/', label: 'Strona Główna' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/', label: 'Strona główna' },
   { href: '/sklep', label: 'Sklep' },
-];
-
-const aboutLinks = [
-  { href: '#', label: 'Shipping' },
-  { href: '#', label: 'Terms' },
-  { href: '#', label: 'Policy' },
+  { href: '/blog', label: 'Blog' },
 ];
 ---
 <footer class="border-t border-divider bg-white mt-16">
@@ -49,18 +43,11 @@ const aboutLinks = [
       </div>
 
       <div>
-        <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">About</h2>
-        <ul class="space-y-2 mb-6">
-          {aboutLinks.map((l) => (
-            <li>
-              <a href={l.href} class="text-sm hover:text-brand-secondary transition-colors">{l.label}</a>
-            </li>
-          ))}
-        </ul>
+        <h2 class="text-sm font-semibold uppercase tracking-wide mb-4">Obserwuj</h2>
         <div class="flex items-center gap-4">
           <a
             href="https://www.youtube.com/@FeelMySelf.beauty"
-            aria-label="Feel MySelf on YouTube"
+            aria-label="Feel MySelf na YouTube"
             class="text-brand-primary hover:text-brand-secondary transition-colors"
             target="_blank"
             rel="noopener"
@@ -71,7 +58,7 @@ const aboutLinks = [
           </a>
           <a
             href="https://www.instagram.com/feel.my.self.beauty/"
-            aria-label="Feel MySelf on Instagram"
+            aria-label="Feel MySelf na Instagramie"
             class="text-brand-primary hover:text-brand-secondary transition-colors"
             target="_blank"
             rel="noopener"

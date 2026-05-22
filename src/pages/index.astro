@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/primitives/Container.astro';
 import Image from '../components/primitives/Image.astro';
+import Button from '../components/primitives/Button.astro';
 import ProductCard from '../components/product/ProductCard.astro';
 import { fetchAllProducts } from '../lib/woo';
 
@@ -34,6 +35,16 @@ const products = await fetchAllProducts();
         Nie dzielimy ludzi na kategorie. Tworzymy skuteczne, naturalne formuły,
         które służą wszystkim — niezależnie od tożsamości, wieku czy wyglądu.
       </p>
+      <div class="mt-10">
+        <Button
+          href="/sklep"
+          variant="secondary"
+          size="lg"
+          class="bg-white text-brand-primary border-white hover:bg-transparent hover:text-white"
+        >
+          Zobacz kosmetyki
+        </Button>
+      </div>
     </Container>
   </section>
 
@@ -41,13 +52,13 @@ const products = await fetchAllProducts();
   <section class="bg-white py-20">
     <Container size="md" class="text-center">
       <Image
-        src="/homepage/logo-white.png"
+        src="https://www.feelmyself.pl/wp-content/uploads/2025/08/Feel-My-Self_black_transparent.png"
         alt=""
         width={160}
         height={150}
-        class="h-32 w-auto mx-auto mb-8 invert"
+        class="h-32 w-auto mx-auto mb-8"
       />
-      <h3 class="text-2xl sm:text-3xl font-extrabold mb-6">Kosmetyki Feel My Self</h3>
+      <h2 class="text-3xl sm:text-4xl font-extrabold mb-6">Kosmetyki Feel My Self</h2>
       <p class="text-base sm:text-lg leading-relaxed">
         Feel My Self to więcej niż marka – to manifest wolności, autentyczności
         i samoakceptacji. Tworzymy kosmetyki i produkty do pielęgnacji dla
@@ -150,6 +161,16 @@ const products = await fetchAllProducts();
         Feel My Self to przestrzeń, w której nie musisz nikogo udawać. Naturalne
         kosmetyki, które wspierają Twoją codzienność — taką, jaką jest.
       </p>
+      <div class="mt-10">
+        <Button
+          href="/sklep"
+          variant="secondary"
+          size="lg"
+          class="bg-white text-brand-primary border-white hover:bg-transparent hover:text-white"
+        >
+          Poznaj produkty
+        </Button>
+      </div>
     </Container>
   </section>
 

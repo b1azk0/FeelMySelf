@@ -4,6 +4,32 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Changed — Homepage typography, CTAs, heading outline, footer hygiene
+
+- **Body weight 200 → 400** in `global.css`. Was visibly too thin once
+  Inter actually loaded; matches the live site. Line-height tightened
+  from 1.68 to 1.6 in step.
+- **Hero CTA** added — `Zobacz kosmetyki` primary button → `/sklep`.
+  White button on dark hero, hover inverts to outlined.
+- **Final CTA section** gets `Poznaj produkty` button → `/sklep`, which
+  also visually separates it from the Minimalism section (they were
+  reading as the same image-+-headline slide twice).
+- **Heading outline fixed** — philosophy block heading was `<h3>`
+  skipping a level from the hero `<h1>`; promoted to `<h2>` with
+  matching `text-3xl sm:text-4xl` scale.
+- **Logo-invert artefact dropped** — philosophy section was loading
+  `logo-white.png` and CSS-inverting it on a white background. Replaced
+  with the existing black logo asset directly. Cleaner edges.
+- **Footer cleanup** — `About` column with English `Shipping / Terms /
+  Policy` placeholders (`href="#"`) removed entirely. Live WP has no
+  legal pages at these URLs either, so the port was carrying dead
+  links. Footer now: Logo cluster / Nawigacja / Obserwuj (social).
+  Adds back when real legal pages exist.
+- **Polish hygiene** along the way — `Strona Główna` → `Strona główna`
+  in footer nav (PL title-case rule); social `aria-label`s `Feel
+  MySelf on YouTube/Instagram` → `na YouTube/Instagramie` (we're inside
+  `<html lang="pl">`).
+
 ### Added — Mobile hamburger menu + on-site search
 
 - `Header.astro` — on `<md` viewports the inline `Sklep / Blog` nav is
