@@ -4,20 +4,28 @@ import type { Product } from '../../lib/woo';
 
 interface Props {
   product: Pick<Product, 'priceMinor' | 'regularPriceMinor' | 'currencySymbol' | 'onSale'>;
+  size?: 'sm' | 'lg';
 }
 
-const { product } = Astro.props;
+const { product, size = 'sm' } = Astro.props;
 const isDiscounted = product.onSale && product.regularPriceMinor > product.priceMinor;
+
+const priceClass = size === 'lg'
+  ? 'text-2xl font-medium text-brand-primary'
+  : 'text-base font-medium text-brand-primary';
+const strikeClass = size === 'lg'
+  ? 'text-base text-muted line-through'
+  : 'text-sm text-muted line-through';
 ---
 <div class="flex items-baseline gap-2">
   {isDiscounted ? (
     <>
-      <span class="text-2xl font-bold text-brand-primary">{formatPrice(product)}</span>
-      <span class="text-base text-muted line-through">
+      <span class={priceClass}>{formatPrice(product)}</span>
+      <span class={strikeClass}>
         {formatPrice({ priceMinor: product.regularPriceMinor, currencySymbol: product.currencySymbol })}
       </span>
     </>
   ) : (
-    <span class="text-2xl font-bold text-brand-primary">{formatPrice(product)}</span>
+    <span class={priceClass}>{formatPrice(product)}</span>
   )}
 </div>

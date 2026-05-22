@@ -4,6 +4,20 @@ All notable changes to the FeelMySelf project are documented here.
 
 ## [Unreleased]
 
+### Changed — Product card + price typography unified
+
+- `ProductCard.astro` — title was `font-bold` at inherited 16px; now
+  `text-sm font-medium leading-snug` (14px / 500). Card title was
+  fighting the page's body-200 + heading-800 system and reading too
+  heavy. Wrapper margin trimmed from `mt-2` to `mt-1`.
+- `PriceTag.astro` — gains a `size?: 'sm' | 'lg'` prop. Default `sm`
+  renders `text-base font-medium` (cards) instead of the previous
+  `text-2xl font-bold`. `lg` renders `text-2xl font-medium` for the
+  product detail page so the price stays focal but stops shouting.
+- `ProductLayout.astro` — passes `size="lg"` to PriceTag; H1 promoted
+  from `font-bold` (700) to `font-extrabold` (800) so the page heading
+  matches the rest of the site's heading system (set in `global.css`).
+
 ### Added — `/sklep` catalog page
 
 - `src/pages/sklep.astro` — full product catalog. Solid header, "Sklep"
